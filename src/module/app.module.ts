@@ -8,6 +8,20 @@ import { AppLoggerModule } from '@config/logger/app-logger.module';
 import { addTransactionalDataSource, getDataSourceByName } from 'typeorm-transactional';
 import { DataSource } from 'typeorm';
 import { AppController } from '@module/app.controller';
+import { CategoryController } from './category/category.controller';
+import { CategoryModule } from './category/category.module';
+import { ProductService } from './product/product.service';
+import { ProductController } from './product/product.controller';
+import { ProductModule } from './product/product.module';
+import { CartModule } from './cart/cart.module';
+import { OrderService } from './order/order.service';
+import { OrderModule } from './order/order.module';
+import { ImageController } from './image/image.controller';
+import { ImageModule } from './image/image.module';
+import { PaymentService } from './payment/payment.service';
+import { PaymentModule } from './payment/payment.module';
+import { VoucherController } from './voucher/voucher.controller';
+import { VoucherModule } from './voucher/voucher.module';
 
 @Module({
   imports: [
@@ -35,7 +49,15 @@ import { AppController } from '@module/app.controller';
     AuthModule,
     UserModule,
     AppLoggerModule,
+    CategoryModule,
+    ProductModule,
+    CartModule,
+    OrderModule,
+    ImageModule,
+    PaymentModule,
+    VoucherModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, CategoryController, ProductController, ImageController, VoucherController],
+  providers: [ProductService, OrderService, PaymentService],
 })
 export class AppModule {}
